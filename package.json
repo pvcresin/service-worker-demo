@@ -1,0 +1,13 @@
+{
+  "name": "service-worker-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "pvcresin <pvcresin0730@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "serve"
+  },
+  "devDependencies": {
+    "serve": "^11.3.2"
+  }
+}
