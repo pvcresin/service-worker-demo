@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Service Worker Demo</title>
+  </head>
+  <body>
+    <a href="./unknown_path">respond with sw</a>
+    <div id="content"></div>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        console.log("service worker is active");
+
+        navigator.serviceWorker
+          .register("./sw.js")
+          .then((registration) => {
+            console.log(`register success: ${registration.scope}`);
+          })
+          .catch((err) => {
+            console.log(`register failed: ${err}`);
+          });
+      }
+
+      const element = document.querySelector("#content");
+
+      const IMAGE_COUNT = 100;
+
+      new Array(IMAGE_COUNT)
+        .fill()
+        .map((_, index) => index)
+        .forEach((index) => {
+          const image = document.createElement("img");
+          const prefix = `${index}`.padStart(2, "0");
+          image.setAttribute(
+            "src",
+            `https://robohash.org/${prefix}.png?size=100x100`
+          );
+          element.appendChild(image);
+        });
+    </script>
+  </body>
+</html>
